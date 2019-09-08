@@ -64,11 +64,8 @@ server.delete('/users/:id', (req,res)=>{
     execSQLQuery('DELETE FROM contact WHERE id ='+ parseInt(req.params.id),res);
     console.log('Usuario deletado.')
 })
-
+//alterar pra orm...
 //https://sequelize.org/master/
-//criar query de insert
-//FAZER ROTA PARA DELETAR TODOS OS USUARIOS, FALTA 
-
 
 
 server.post('/users', (req, res) =>{
