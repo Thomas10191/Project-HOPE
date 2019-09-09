@@ -66,8 +66,6 @@ server.delete('/users/:id', (req,res)=>{
 })
 
 //https://sequelize.org/master/
-//criar query de insert
-//FAZER ROTA PARA DELETAR TODOS OS USUARIOS, FALTA 
 
 
 
@@ -90,7 +88,6 @@ server.patch('/users/:id?', (req, res) =>{
     const phone = req.body.phone.substring(0,50);
     const email = req.body.email.substring(0,50);
     const password = req.body.password.substring(0,50);
-    //consigo captar os dados maas nao consigo alterar no banco de dados
     execSQLQuery(`UPDATE contact SET first_name='${first_name}',last_name='${last_name}',phone='${phone}',email='${email}',password='${password}' WHERE id=${id}`, res);
 
 })
