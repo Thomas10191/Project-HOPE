@@ -35,7 +35,7 @@ function execSQLQuery(sqlQry, res){
           res.json(error);
         else
           res.json(results);
-        connection.end();
+      //  connection.end();
     });
 }
 
@@ -64,8 +64,11 @@ server.delete('/users/:id', (req,res)=>{
     execSQLQuery('DELETE FROM contact WHERE id ='+ parseInt(req.params.id),res);
     console.log('Usuario deletado.')
 })
-//alterar pra orm...
+
 //https://sequelize.org/master/
+//criar query de insert
+//FAZER ROTA PARA DELETAR TODOS OS USUARIOS, FALTA 
+
 
 
 server.post('/users', (req, res) =>{
@@ -87,10 +90,8 @@ server.patch('/users/:id?', (req, res) =>{
     const phone = req.body.phone.substring(0,50);
     const email = req.body.email.substring(0,50);
     const password = req.body.password.substring(0,50);
-    console.log(first_name);
-    console.log(last_name);
     //consigo captar os dados maas nao consigo alterar no banco de dados
-    execSQLQuery(`UPDATE contact SET first_name='${first_name}',last_name='${last_name}',phone='${phone}',email='${email}',password='${password}' WHERE= ${id}`, res);
+    execSQLQuery(`UPDATE contact SET first_name='${first_name}',last_name='${last_name}',phone='${phone}',email='${email}',password='${password}' WHERE id=${id}`, res);
 
 })
 
