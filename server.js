@@ -17,10 +17,10 @@ var connection = sql.createConnection({
 //VERIFICACAO DE ERRO AO CONECTAR AO BD
 connection.connect((error)=>{
     if (!error){
-        console.log("Connected BD");
+        console.log("CONNECTED\n");
     }
     else{
-        console.log("ERRO");
+        console.log("ERRO\n");
     
     }
 });
@@ -28,7 +28,8 @@ connection.connect((error)=>{
 //CONFIGURANDO BODY PARSER PARA RECEBER PACOTES URLENCODED E JSON
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
-//CRIANDO A QUERY
+
+//criando execção
 function execSQLQuery(sqlQry, res){
     connection.query(sqlQry, function(error, results, fields){
         if(error) 
@@ -62,12 +63,7 @@ server.delete('/users/:id', (req,res)=>{
     execSQLQuery('DELETE FROM contact WHERE id ='+ parseInt(req.params.id),res);
     console.log('Usuario deletado.')
 })
-
-//https://sequelize.org/master/
-//criar query de insert
-//FAZER ROTA PARA DELETAR TODOS OS USUARIOS, FALTA 
-
-
+//rota para inserir contato
 server.post('/users', (req, res) =>{
     const first_name = req.body.first_name.substring(0,50);
     const last_name = req.body.last_name.substring(0,50);
@@ -77,20 +73,7 @@ server.post('/users', (req, res) =>{
     execSQLQuery(`INSERT INTO contact (first_name,last_name,phone,email,password) VALUES('${first_name}','${last_name}','${phone}','${email}','${password}')`, res);
     console.log("User Cadastrado\n");
 });
-
-/*
-server.patch('/users/:id?', (req, res) =>{
-    const id = parseInt(req.params.id);
-    const first_name = req.body.first_name.substring(0,50);
-    const last_name = req.body.last_name.substring(0,50);
-    const phone = req.body.phone.substring(0,50);
-    const email = req.body.email.substring(0,50);
-    const password = req.body.password.substring(0,50);
-    execSQLQuery(`UPDATE contact SET first_name='${first_name}',last_name='${last_name}',phone='${phone}',email='${email}',password='${password}' WHERE id=${id}`, res);
-
-})
-*/
-
+//rota para atualizar um usuario
 server.put('/users/:id?', (req, res) =>{
     console.log("update user");
     console.log(req.body);
