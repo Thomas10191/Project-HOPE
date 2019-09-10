@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 09-Set-2019 às 02:33
+-- Tempo de geração: 10-Set-2019 às 02:10
 -- Versão do servidor: 10.3.16-MariaDB
 -- versão do PHP: 7.3.7
 
@@ -43,8 +43,8 @@ CREATE TABLE `contact` (
 
 INSERT INTO `contact` (`id`, `first_name`, `last_name`, `phone`, `email`, `password`) VALUES
 (1, 'Thomas', 'Ribeiro', '2222', 'thomas@thomas', '123123123'),
-(4, 'juca', 'bari', '12133', 'thhh@tt', '123'),
-(5, 'Rodigro', 'perera', '122333', 'RUDR@@sst', '1223');
+(4, 'Joao', 'Mario', '99988899', 'Joao@Mario', '1111111'),
+(5, 'test', 'ttttt', '123', 'test@', '1233333');
 
 --
 -- Índices para tabelas despejadas
