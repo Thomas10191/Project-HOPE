@@ -35,17 +35,15 @@ function execSQLQuery(sqlQry, res){
           res.json(error);
         else
           res.json(results);
-      //  connection.end();
     });
 }
 
 //rota para listar todos os usuarios cadastrados
 server.get('/users', (req,res,rows)=>{    
     execSQLQuery("SELECT * FROM contact",res);
-    console.log("Usuarios cadastrados: "+ rows.length);
-    //res.json("Quantidade de usuarios cadastrados: "+ rows.length);
-    //res.json(rows);
 })
+
+
 //rota para listar usuario especifico - tem como parametro id
 server.get('/users/:id?', (req,res)=>{ 
     let filter = '';
@@ -66,7 +64,8 @@ server.delete('/users/:id', (req,res)=>{
 })
 
 //https://sequelize.org/master/
-
+//criar query de insert
+//FAZER ROTA PARA DELETAR TODOS OS USUARIOS, FALTA 
 
 
 server.post('/users', (req, res) =>{
@@ -79,8 +78,7 @@ server.post('/users', (req, res) =>{
     console.log("User Cadastrado\n");
 });
 
-
-
+/*
 server.patch('/users/:id?', (req, res) =>{
     const id = parseInt(req.params.id);
     const first_name = req.body.first_name.substring(0,50);
@@ -91,5 +89,17 @@ server.patch('/users/:id?', (req, res) =>{
     execSQLQuery(`UPDATE contact SET first_name='${first_name}',last_name='${last_name}',phone='${phone}',email='${email}',password='${password}' WHERE id=${id}`, res);
 
 })
+*/
 
+server.put('/users/:id?', (req, res) =>{
+    console.log("update user");
+    console.log(req.body);
+    const id = parseInt(req.params.id);
+    const first_name = req.body.first_name;
+    const last_name = req.body.last_name;
+    const phone = req.body.phone;
+    const email = req.body.email;
+    const password = req.body.password;
+    execSQLQuery(`UPDATE contact SET first_name='${first_name}',last_name='${last_name}',phone='${phone}',email='${email}',password='${password}' WHERE id=${id}`, res);
+});
 server.listen(332);
