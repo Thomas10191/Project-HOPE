@@ -1,16 +1,14 @@
 var createError = require('http-errors');
-var express = require('express');
-var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-
-var app = express();
+var express 	= require('express');
+var routeUser 	= require(__dirname+'/routes/users');
+var app 		= express();
+var logger 		= require("morgan");
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/', indexRouter);
+app.use('/', routeUser);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -28,4 +26,5 @@ app.use(function(err, req, res, next) {
   res.send('error');
 });
 
+app.listen(8000);
 module.exports = app;

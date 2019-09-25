@@ -1,81 +1,76 @@
+const User = require('../models/User');
+const { check, validationResult } = require('express-validator');
 
-/*
-const mysql = ('mysql');
-var connection = mysql.createConnection(){
-    host = 'localhost',
-    passowrd = '',
-    
-    database = 
-}
+module.exports = {
 
-*/
+    get : async function(req, res, next) {
+        // Or with extra options
+        const options = {
+            attributes: ['id', 'first_name', 'last_name', 'phone', 'email'],
+            page: req.query.page ? req.query.page : 1
+        };
 
+        const { docs, pages, total } = await User.paginate(options)
+        res.json({data: docs, pages: pages, total: total});
+    },
 
-exports.getUsuarios = function(req, res, next) {
-    res.send("Hello world 2");
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-const mysql = require('mysql');
-const server = express();
-//server.use(routes);
-
-//CONEXAO COM O BANCO DE DADOS
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password:'',
-    database:'minhabased',
-});
-//VERIFICACAO DE ERRO AO CONECTAR AO BD
-connection.connect((error)=>{
-    if (!!error){
-        console.log("ERRO");
-    }
-    else{
-        console.log("Connected");
-    }
-});
- 
-///CONEXAO NO LOCALHOST PORTA : 332
-server.get('/', (req,res)=>{
-    connection.query("SELECT * FROM mybd",(error, rows, fields)=>{
-        if (!!error){
-            console.log("Erro\n");
+    getById : async function(req, res, next){
+        var user = await User.findOne({where: {id : req.params.id}});
+        if (user != undefined) {
+            res.json(user.dataValues);
+        } else {
+            res.status(404).send('Not found');
         }
-        else{
-            console.log("Sucesso\n");
-            //MOSTRAR TABELA BD
-            console.log(rows);
-            res.send("Welcome  "+ rows[0].nome);
         
-        }
-    })
-})
- 
+    },
 
-server.listen(332);*/
+    put : async function(req, res, next){
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() })
+        }
+
+        if (req.body.id) {
+             User.findOne({where : {id: req.body.id}}).then(function(value){
+                if (value) {
+                    User.update(
+                        {
+                            first_name  : req.body.first_name,
+                            last_name   : req.body.last_name,
+                            email       : req.body.email,
+                            phone       : req.body.phone,
+                            password    : req.body.password
+                        }
+                    , {where: {id: req.body.id}}).then(function(value){
+                        res.json(value);
+                    });
+                } else {
+                    User.create(
+                        {
+                            first_name  : req.body.first_name,
+                            last_name   : req.body.last_name,
+                            email       : req.body.email,
+                            phone       : req.body.phone,
+                            password    : req.body.password
+                        }
+                    ).then(function(value){
+                        res.json(value);
+                    });
+                }
+             })
+        } else {
+            User.create(
+                {
+                    first_name  : req.body.first_name,
+                    last_name   : req.body.last_name,
+                    email       : req.body.email,
+                    phone       : req.body.phone,
+                    password    : req.body.password
+                }
+            ).then(function(value){
+                res.json(value);
+            });
+        }
+    }
+};

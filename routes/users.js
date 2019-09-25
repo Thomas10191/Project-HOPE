@@ -1,8 +1,18 @@
-var express = require('express');
-var router = express.Router();
-var controllerUser = require('../controllers/controllerUser');
+const express 			= require('express');
+const router 			= express.Router();
+const controllerUser 	= require('../controllers/controllerUser');
+
+const { check, validationResult } = require('express-validator');
 
 /* GET users listing. */
-router.get('/', controllerUser);
+router.get('/users', controllerUser.get);
+router.get('/users/:id', controllerUser.getById);
+router.post('/users', [
+  	check('first_name')	.isLength({ min: 3 }),
+  	check('last_name')	.isLength({ min: 3 }),
+  	check('email')		.isEmail(),
+  	check('phone')		.isNumeric(),
+  	check('password')	.isLength({ min: 3 })
+], controllerUser.put)
 
 module.exports = router;
