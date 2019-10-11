@@ -15,4 +15,6 @@ router.post('/users', [
   	check('password')	.isLength({ min: 3 })
 ], controllerUser.put)
 
+router.delete('/users/:id', controllerUser.deleteUser);
+
 module.exports = router;

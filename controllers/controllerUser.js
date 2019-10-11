@@ -24,6 +24,22 @@ module.exports = {
         
     },
 
+    deleteUser : async function(req,res, next){
+        var userId = await User.findOne({where: {id : req.params.id}});
+
+        if (userId != undefined) {
+            User.remove({'id':userId}, function(err,results){
+                if(err){
+                  throw error
+                } else {
+                    res.status(200).send(`User deleted ID: ${userId}`);
+                }
+            })
+        } else {
+            res.status(404).send('Not found');
+        }
+    },
+
     put : async function(req, res, next){
         const errors = validationResult(req);
 
