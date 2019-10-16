@@ -11,32 +11,32 @@ module.exports = {
         };
 
         const { docs, pages, total } = await User.paginate(options)
-        res.json({data: docs, pages: pages, total: total});
+        return res.json({data: docs, pages: pages, total: total});
     },
 
     getById : async function(req, res, next){
         var user = await User.findOne({where: {id : req.params.id}});
         if (user != undefined) {
-            res.json(user.dataValues);
+            return res.json(user.dataValues);
         } else {
-            res.status(404).send('Not found');
+            return res.status(404).send('Not found');
         }
         
     },
 
     deleteUser : async function(req,res, next){
-        var userId = await User.findOne({where: {id : req.params.id}});
+        var user = await User.findOne({where: {id : req.params.id}});
 
-        if (userId != undefined) {
-            User.remove({'id':userId}, function(err,results){
-                if(err){
-                  throw error
+        if (user != undefined) {
+            User.remove({'id': user.dataValues.id}, function(err,results){
+                if (err) {
+                    return res.status(500).json({ errors:  JSON.stringify(err)});
                 } else {
-                    res.status(200).send(`User deleted ID: ${userId}`);
+                    return res.json(user.dataValues);
                 }
             })
         } else {
-            res.status(404).send('Not found');
+            return res.status(404).send('Not found');
         }
     },
 
@@ -59,7 +59,7 @@ module.exports = {
                             password    : req.body.password
                         }
                     , {where: {id: req.body.id}}).then(function(value){
-                        res.json(value);
+                        return res.json(value);
                     });
                 } else {
                     User.create(
@@ -71,7 +71,7 @@ module.exports = {
                             password    : req.body.password
                         }
                     ).then(function(value){
-                        res.json(value);
+                        return res.json(value);
                     });
                 }
              })
@@ -85,7 +85,7 @@ module.exports = {
                     password    : req.body.password
                 }
             ).then(function(value){
-                res.json(value);
+                return res.json(value);
             });
         }
     }
