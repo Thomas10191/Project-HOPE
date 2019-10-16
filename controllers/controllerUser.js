@@ -28,7 +28,7 @@ module.exports = {
         var user = await User.findOne({where: {id : req.params.id}});
 
         if (user != undefined) {
-            User.remove({'id': user.dataValues.id}, function(err,results){
+            user.destroy({'id': user.dataValues.id}, function(err,results){
                 if (err) {
                     return res.status(500).json({ errors:  JSON.stringify(err)});
                 } else {
