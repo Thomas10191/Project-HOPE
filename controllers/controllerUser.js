@@ -14,7 +14,7 @@ module.exports = {
         return res.json({data: docs, pages: pages, total: total});
     },
 
-    getById : async function(req, res, next) {
+    getById : async function(req, res, next){
         var user = await User.findOne({where: {id : req.params.id}});
         if (user != undefined) {
             return res.json(user.dataValues);
@@ -24,15 +24,15 @@ module.exports = {
         
     },
 
-    deleteUser : async function(req,res, next) {
+    deleteUser : async function(req,res, next){
         var user = await User.findOne({where: {id : req.params.id}});
 
         if (user != undefined) {
-            User.destroy({where: {'id': user.dataValues.id}}).then(function(results){
-                if (results) {
-                    return res.json(user.dataValues);
-                } else {
+            user.destroy({'id': user.dataValues.id}, function(err,results){
+                if (err) {
                     return res.status(500).json({ errors:  JSON.stringify(err)});
+                } else {
+                    return res.json(user.dataValues);
                 }
             })
         } else {
@@ -40,7 +40,7 @@ module.exports = {
         }
     },
 
-    put : async function(req, res, next) {
+    put : async function(req, res, next){
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
