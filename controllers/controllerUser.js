@@ -27,6 +27,7 @@ module.exports = {
     deleteUser : async function(req,res, next){
         var user = await User.findOne({where: {id : req.params.id}});
 
+        
         if (user != undefined) {
             user.destroy({'id': user.dataValues.id}, function(err,results){
                 if (err) {
