@@ -8,6 +8,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+
+
 app.use('/', routeUser);
 
 // catch 404 and forward to error handler
