@@ -5,16 +5,16 @@ const controllerUser 	= require('../controllers/controllerUser');
 const { check, validationResult } = require('express-validator');
 
 /* GET users listing. */
-router.get('/users', controllerUser.get);
-router.get('/users/:id', controllerUser.getById);
-router.post('/users', [
+router.get('', controllerUser.get);
+router.get('/:id', controllerUser.getById);
+router.post('', [
   	check('first_name')	.isLength({ min: 3 }),
   	check('last_name')	.isLength({ min: 3 }),
   	check('email')		.isEmail(),
   	check('phone')		.isNumeric(),
   	check('password')	.isLength({ min: 3 })
-], controllerUser.put)
+], controllerUser.put);
 
-router.delete('/users/:id', controllerUser.deleteUser);
+router.delete('/:id', controllerUser.delete);
 
 module.exports = router;

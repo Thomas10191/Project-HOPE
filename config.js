@@ -4,7 +4,7 @@ module.exports = {
         port: 3306,
     	database: "hope", //data base of institute
     	username: "root", //User rap
-    	password: "", //Password user rap
+    	password: "click.com", //Password user rap
     	database_type: "mysql"  //database types avaliables:'mysql'|'sqlite'|'postgres'|'mssql'
     	//schema  : "schema_rap"
     }, 

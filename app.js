@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express 	= require('express');
+var routePosts 	= require(__dirname+'/routes/posts');
 var routeUser 	= require(__dirname+'/routes/users');
 var app 		= express();
 var logger 		= require("morgan");
@@ -8,24 +9,23 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
-
-app.use('/', routeUser);
+app.use('/posts', routePosts);
+app.use('/users', routeUser);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  	next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.send('error');
+	// render the error page
+	res.status(err.status || 500);
+	res.send('error');
 });
 
 app.listen(8000);

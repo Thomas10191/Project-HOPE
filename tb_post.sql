@@ -29,18 +29,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tb_post` (
-  `idPost` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `title` varchar(30) DEFAULT NULL,
   `message` text DEFAULT NULL,
-  `datePublication` timestamp NULL DEFAULT current_timestamp(),
-  `updatePublication` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `datePublication` timestamp,
+  `updatePublication` timestamp
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tb_post`
 --
 
-INSERT INTO `tb_post` (`idPost`, `title`, `message`, `datePublication`, `updatePublication`) VALUES
+INSERT INTO `tb_post` (`id`, `title`, `message`, `datePublication`, `updatePublication`) VALUES
 (3, 'TESTE', 'MESAGEM DO POST A SER COLOCADO', '2019-10-29 23:47:13', '2019-10-29 23:47:13');
 
 --
@@ -51,7 +51,7 @@ INSERT INTO `tb_post` (`idPost`, `title`, `message`, `datePublication`, `updateP
 -- Índices para tabela `tb_post`
 --
 ALTER TABLE `tb_post`
-  ADD PRIMARY KEY (`idPost`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -61,7 +61,7 @@ ALTER TABLE `tb_post`
 -- AUTO_INCREMENT de tabela `tb_post`
 --
 ALTER TABLE `tb_post`
-  MODIFY `idPost` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

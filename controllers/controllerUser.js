@@ -26,16 +26,14 @@ module.exports = {
         
     },
 
-    deleteUser : async function(req,res, next){
+    delete : async function(req,res, next){
         var user = await User.findOne({where: {id : req.params.id}});
 
         if (user != undefined) {
-            user.destroy({'id': user.dataValues.id}, function(err,results){
-                if (err) {
-                    return res.status(500).json({ errors:  JSON.stringify(err)});
-                } else {
-                    return res.json(user.dataValues);
-                }
+            user.destroy({'id': post.dataValues.id}).then(function(result){
+                return res.json(result);
+            }, function(err){
+                return res.status(500).json({ errors:  JSON.stringify(err) });
             })
         } else {
             return res.status(404).send('Not found');
