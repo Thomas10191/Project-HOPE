@@ -4,16 +4,18 @@ const { check, validationResult } = require('express-validator');
 module.exports = {
 
     get : async function(req, res, next) {
+       
         // Or with extra options
         const options = {
             attributes: ['id', 'first_name', 'last_name', 'phone', 'email'],
             page: req.query.page ? req.query.page : 1
         };
-
+        
         const { docs, pages, total } = await User.paginate(options)
+        
         return res.json({data: docs, pages: pages, total: total});
     },
-
+  
     getById : async function(req, res, next){
         var user = await User.findOne({where: {id : req.params.id}});
         if (user != undefined) {
