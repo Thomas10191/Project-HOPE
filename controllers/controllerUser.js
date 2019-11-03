@@ -30,7 +30,7 @@ module.exports = {
         var user = await User.findOne({where: {id : req.params.id}});
 
         if (user != undefined) {
-            user.destroy({'id': post.dataValues.id}).then(function(result){
+            user.destroy({'id': user.dataValues.id}).then(function(result){
                 return res.json(result);
             }, function(err){
                 return res.status(500).json({ errors:  JSON.stringify(err) });
