@@ -4,11 +4,12 @@ services:
   postgres-compose:
     image: postgres
     environment:
-      POSTGRES_PASSWORD: "Postgres2019!"
+      POSTGRES_PASSWORD: "passhope"
+      POSTGRES_DB: "hope"
     ports:
       - "15432:5432"
     volumes:
-      - ~/PostgreSQL:/var/lib/postgresql/data 
+      - ./data/postgres:/var/lib/postgresql/data 
     networks:
       - postgres-compose-network
 
