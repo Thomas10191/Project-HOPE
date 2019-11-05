@@ -3,6 +3,10 @@ var express 	= require('express');
 var routePosts 	= require(__dirname+'/routes/posts');
 var routeUser 	= require(__dirname+'/routes/users');
 var routeAuth 	= require(__dirname+'/routes/auth');
+
+var config 		= require(__dirname+'/config.js');
+var conection 	= require(__dirname+'/connection.js');
+
 var app 		= express();
 var logger 		= require("morgan");
 
@@ -30,7 +34,10 @@ app.use(function(err, req, res, next) {
 	res.send('error');
 });
 
-var api_port = process.env.PORT || 8000;
+conection.sequelize.sync().then(function() {
+	app.listen(config.API_PORT, function() {
+    	console.log('Express server listening on port ' + config.API_PORT);
+  	});
+});
 
-app.listen(api_port);
 module.exports = app;
