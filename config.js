@@ -6,7 +6,6 @@ module.exports = {
     	username: "postgres", //User rap
     	password: "Postgres2019!", //Password user rap
     	database_type: "postgres"  //database types avaliables:'mysql'|'sqlite'|'postgres'|'mssql'
-    	//schema  : "schema_rap"
-    }, 
+    },
     API_PORT : 8040
 };

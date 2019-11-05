@@ -2,8 +2,11 @@ var createError = require('http-errors');
 var express 	= require('express');
 var routePosts 	= require(__dirname+'/routes/posts');
 var routeUser 	= require(__dirname+'/routes/users');
+var routeAuth 	= require(__dirname+'/routes/auth');
+
 var config 		= require(__dirname+'/config.js');
 var conection 	= require(__dirname+'/connection.js');
+
 var app 		= express();
 var logger 		= require("morgan");
 
@@ -13,6 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/posts', routePosts);
 app.use('/users', routeUser);
+app.use('/auth', routeAuth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
