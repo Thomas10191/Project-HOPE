@@ -28,5 +28,7 @@ sequelize.authenticate().then(() => {
 });
 
 
+
+
 module.exports.sequelize = sequelize;
 module.exports.schema = config.DB.schema;
