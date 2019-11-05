@@ -13,11 +13,13 @@
     "express": "^4.17.1",
     "express-generator": "^4.16.1",
     "express-validator": "^6.2.0",
+    "http-errors": "^1.7.3",
     "morgan": "^1.9.1",
     "mysql": "^2.16.0",
     "mysql2": "^1.6.4",
     "nodemon": "^1.19.1",
     "npm": "^6.11.3",
+    "pg": "^7.12.1",
     "sequelize": "^5.19.7",
     "sequelize-paginate": "^1.1.6",
     "start": "^5.1.0"
