@@ -30,5 +30,7 @@ app.use(function(err, req, res, next) {
 	res.send('error');
 });
 
-app.listen(8000);
+var api_port = process.env.PORT || 8000;
+
+app.listen(api_port);
 module.exports = app;
