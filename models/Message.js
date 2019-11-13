@@ -3,6 +3,8 @@ const sequelizePaginate = require('sequelize-paginate');
 
 const conection = require(__dirname+'/../connection.js');
 
+const User      = require(__dirname+'/User.js');
+
 var Message = conection.sequelize.define('tb_message', {
     	id: {
     		type: Sequelize.INTEGER, 
@@ -22,13 +24,22 @@ var Message = conection.sequelize.define('tb_message', {
 
         },
         send_user_id:{
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER, 
+            references: { 
+                model: User, 
+                key: 'id', 
+                deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+           }
         },
         recive_user_id:{
-            type: Sequelize.INTEGER
-        },
-        
-       createdAt : Sequelize.DATE
+            type: Sequelize.INTEGER, 
+            references: { 
+                model: User, 
+                key: 'id', 
+                deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+           }
+        }, 
+        createdAt : Sequelize.DATE
         
 	},{
         schema: conection.schema,
@@ -36,6 +47,9 @@ var Message = conection.sequelize.define('tb_message', {
         timestamp: true
 	}
 );
+
+Message.belongsTo(User, {foreignKey: 'send_user_id'});
+Message.belongsTo(User, {foreignKey: 'recive_user_id'});
 
 sequelizePaginate.paginate(Message);
 module.exports = Message;

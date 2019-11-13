@@ -4,6 +4,9 @@ const sequelizePaginate = require('sequelize-paginate');
 
 const conection = require(__dirname+'/../connection.js');
 
+const TypeUser 	= require(__dirname+'/TypeUser.js');
+const TypeCard 	= require(__dirname+'/TypeCard.js');
+
 var Card = conection.sequelize.define('tb_card', {
 	id: {
 		type: Sequelize.INTEGER, 
@@ -14,10 +17,20 @@ var Card = conection.sequelize.define('tb_card', {
 		type: Sequelize.TEXT
 	}, 
 	type_user_id: {
-		type: Sequelize.INTEGER
+		type: Sequelize.INTEGER, 
+		references: { 
+			model: TypeUser, 
+			key: 'id', 
+			deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+	   }
 	},
 	type_card_id: {
-		type: Sequelize.INTEGER
+		type: Sequelize.INTEGER, 
+		references: { 
+			model: TypeCard, 
+			key: 'id', 
+			deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+	   }
 	},
 	description: {
 		type: Sequelize.TEXT
@@ -41,8 +54,10 @@ var Card = conection.sequelize.define('tb_card', {
     schema: conection.schema,
     freezeTableName: true,
     timestamp: false
-	}
-);
+});
+
+Card.belongsTo(TypeUser, {foreignKey: 'type_user_id'});
+Card.belongsTo(TypeCard, {foreignKey: 'type_card_id'});
 
 sequelizePaginate.paginate(Card);
 module.exports = Card;

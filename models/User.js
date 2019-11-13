@@ -4,6 +4,8 @@ const sequelizePaginate = require('sequelize-paginate');
 
 const conection = require(__dirname+'/../connection.js');
 
+const TypeUser 	= require(__dirname+'/TypeUser.js');
+
 var User = conection.sequelize.define('tb_user', {
 	id: {
 		type: Sequelize.INTEGER, 
@@ -53,7 +55,12 @@ var User = conection.sequelize.define('tb_user', {
 		type: Sequelize.JSON
 	},
 	type_user_id: {
-		type: Sequelize.INTEGER
+		type: Sequelize.INTEGER, 
+		references: { 
+			model: TypeUser, 
+			key: 'id', 
+			deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+	   	}
 	}
 },{
     schema: conection.schema,
@@ -61,6 +68,8 @@ var User = conection.sequelize.define('tb_user', {
     timestamp: false
 	}
 );
+
+User.belongsTo(TypeUser, {foreignKey: 'type_user_id'});
 
 sequelizePaginate.paginate(User);
 module.exports = User;

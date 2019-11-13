@@ -1,11 +1,10 @@
-const Post = require('../models/Post');
+const Post = require('../models/Card');
 const { check, validationResult } = require('express-validator');
 
 module.exports = {
     get : async function(req, res, next) {
         // Or with extra options   
         const options = {
-            attributes: ['id', 'title', 'message','datePublication','updatePublication'],
             page : req.query.page ? req.query.page : 1,
         };
 
