@@ -12,7 +12,7 @@ var Sober = conection.sequelize.define('tb_sober', {
     	},
         user_id: {
             type: Sequelize.INTEGER
-        }
+        },
         createAt: Sequelize.DATE
 	},{
         schema: conection.schema,
