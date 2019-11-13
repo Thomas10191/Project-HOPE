@@ -20,7 +20,7 @@ var User = conection.sequelize.define('tb_user', {
 		type: Sequelize.STRING(11)
 	},
 	age: {
-		type: Sequelize.INT(3)
+		type: Sequelize.INTEGER
 	},
 	phone: {
 		type: Sequelize.TEXT
