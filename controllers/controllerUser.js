@@ -7,7 +7,22 @@ module.exports = {
        
         // Or with extra options
         const options = {
-            attributes: ['id', 'first_name', 'last_name', 'phone', 'email'],
+            attributes: [   'id', 
+                            'first_name', 
+                            'last_name', 
+                            'cpf', 'age', 
+                            'phone', 
+                            'email', 
+                            'password', 
+                            'image_url', 
+                            'adress_street', 
+                            'adress_city', 
+                            'adress_state', 
+                            'adress_country', 
+                            'adress_zipcode', 
+                            'data', 
+                            'type_user_id'
+                        ],
             page: req.query.page ? req.query.page : 1
         };
         
@@ -53,11 +68,21 @@ module.exports = {
                 if (value) {
                     User.update(
                         {
-                            first_name  : req.body.first_name,
-                            last_name   : req.body.last_name,
-                            email       : req.body.email,
-                            phone       : req.body.phone,
-                            password    : req.body.password
+                            first_name      : req.body.first_name,
+                            last_name       : req.body.last_name,
+                            cpf             : req.body.cpf,
+                            age             : req.body.age,
+                            phone           : req.body.phone,
+                            email           : req.body.email,
+                            password        : req.body.password,
+                            image_url       : req.body.image_url,
+                            adress_street   : req.body.adress_street,
+                            adress_city     : req.body.adress_city,
+                            adress_state    : req.body.adress_state,
+                            adress_country  : req.body.country,
+                            adress_zipcode  : req.body.zipcode,
+                            data            : req.body.data,
+                            type_user_id    : req.body.type_user_id
                         }
                     , {where: {id: req.body.id}}).then(function(value){
                         return res.json(value);
@@ -65,11 +90,21 @@ module.exports = {
                 } else {
                     User.create(
                         {
-                            first_name  : req.body.first_name,
-                            last_name   : req.body.last_name,
-                            email       : req.body.email,
-                            phone       : req.body.phone,
-                            password    : req.body.password
+                            first_name      : req.body.first_name,
+                            last_name       : req.body.last_name,
+                            cpf             : req.body.cpf,
+                            age             : req.body.age,
+                            phone           : req.body.phone,
+                            email           : req.body.email,
+                            password        : req.body.password,
+                            image_url       : req.body.image_url,
+                            adress_street   : req.body.adress_street,
+                            adress_city     : req.body.adress_city,
+                            adress_state    : req.body.adress_state,
+                            adress_country  : req.body.country,
+                            adress_zipcode  : req.body.zipcode,
+                            data            : req.body.data,
+                            type_user_id    : req.body.type_user_id
                         }
                     ).then(function(value){
                         return res.json(value);
@@ -79,11 +114,21 @@ module.exports = {
         } else {
             User.create(
                 {
-                    first_name  : req.body.first_name,
-                    last_name   : req.body.last_name,
-                    email       : req.body.email,
-                    phone       : req.body.phone,
-                    password    : req.body.password
+                    first_name      : req.body.first_name,
+                    last_name       : req.body.last_name,
+                    cpf             : req.body.cpf,
+                    age             : req.body.age,
+                    phone           : req.body.phone,
+                    email           : req.body.email,
+                    password        : req.body.password,
+                    image_url       : req.body.image_url,
+                    adress_street   : req.body.adress_street,
+                    adress_city     : req.body.adress_city,
+                    adress_state    : req.body.adress_state,
+                    adress_country  : req.body.country,
+                    adress_zipcode  : req.body.zipcode,
+                    data            : req.body.data,
+                    type_user_id    : req.body.type_user_id
                 }
             ).then(function(value){
                 return res.json(value);

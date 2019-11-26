@@ -4,7 +4,7 @@ const sequelizePaginate = require('sequelize-paginate');
 
 const conection = require(__dirname+'/../connection.js');
 
-var TypeUser = conection.sequelize.define('tb_auth', {
+var TypeUser = conection.sequelize.define('tb_type_user', {
 	id: {
 		type: Sequelize.INTEGER, 
 		autoIncrement: true, 
