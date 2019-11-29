@@ -1,6 +1,6 @@
 var createError = require('http-errors');
 var express 	= require('express');
-var routePosts 	= require(__dirname+'/routes/posts');
+var routePosts 	= require(__dirname+'/routes/cards');
 var routeUser 	= require(__dirname+'/routes/users');
 var routeAuth 	= require(__dirname+'/routes/auth');
 
@@ -14,7 +14,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/posts', routePosts);
+app.use('/cards', routePosts);
 app.use('/users', routeUser);
 app.use('/auth', routeAuth);
 
