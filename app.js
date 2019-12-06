@@ -9,7 +9,7 @@ var routeDoc		= require(__dirname+'/routes/doc');
 var routeTypeUser 	= require(__dirname+'/routes/type_user');
 var routeTypeCard 	= require(__dirname+'/routes/type_card');
 var routeResponse 	= require(__dirname+'/routes/response');
-
+var routeMessage    = require(__dirname+'/routes/message')
 var config 			= require(__dirname+'/config.js');
 var conection 		= require(__dirname+'/connection.js');
 
@@ -28,7 +28,7 @@ app.use('/',routeIndex);
 app.use('/typeuser',routeTypeUser)
 app.use('/typecard',routeTypeCard)
 app.use('/response',routeResponse)
-
+app.use('/message',routeMessage)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   	next(createError(404));
