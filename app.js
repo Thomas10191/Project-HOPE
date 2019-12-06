@@ -1,14 +1,17 @@
 var createError = require('http-errors');
 var express 	= require('express');
 
-var routePosts 	= require(__dirname+'/routes/cards');
-var routeUser 	= require(__dirname+'/routes/users');
-var routeAuth 	= require(__dirname+'/routes/auth');
-var routeIndex 	= require(__dirname+'/routes/index');
-var routeDoc	= require(__dirname+'/routes/doc');
-var routeTypeUser = require(__dirname+'/routes/type_user');
-var config 		= require(__dirname+'/config.js');
-var conection 	= require(__dirname+'/connection.js');
+var routePosts 		= require(__dirname+'/routes/cards');
+var routeUser 		= require(__dirname+'/routes/users');
+var routeAuth 		= require(__dirname+'/routes/auth');
+var routeIndex 		= require(__dirname+'/routes/index');
+var routeDoc		= require(__dirname+'/routes/doc');
+var routeTypeUser 	= require(__dirname+'/routes/type_user');
+var routeTypeCard 	= require(__dirname+'/routes/type_card');
+var routeResponse 	= require(__dirname+'/routes/response');
+
+var config 			= require(__dirname+'/config.js');
+var conection 		= require(__dirname+'/connection.js');
 
 var app 		= express();
 var logger 		= require("morgan");
@@ -23,6 +26,8 @@ app.use('/auth', routeAuth);
 app.use('/doc',routeDoc);
 app.use('/',routeIndex);
 app.use('/typeuser',routeTypeUser)
+app.use('/typecard',routeTypeCard)
+app.use('/response',routeResponse)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
