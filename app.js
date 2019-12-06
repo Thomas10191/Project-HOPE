@@ -6,7 +6,7 @@ var routeUser 	= require(__dirname+'/routes/users');
 var routeAuth 	= require(__dirname+'/routes/auth');
 var routeIndex 	= require(__dirname+'/routes/index');
 var routeDoc	= require(__dirname+'/routes/doc');
-
+var routeTypeUser = require(__dirname+'/routes/type_user');
 var config 		= require(__dirname+'/config.js');
 var conection 	= require(__dirname+'/connection.js');
 
@@ -22,6 +22,7 @@ app.use('/users', routeUser);
 app.use('/auth', routeAuth);
 app.use('/doc',routeDoc);
 app.use('/',routeIndex);
+app.use('/typeuser',routeTypeUser)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
