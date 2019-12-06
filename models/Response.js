@@ -5,6 +5,7 @@ const sequelizePaginate = require('sequelize-paginate');
 const conection = require(__dirname+'/../connection.js');
 
 const Card      = require(__dirname+'/Card.js');
+const TypeCard 	= require(__dirname+'/TypeCard.js');
 
 var Response = conection.sequelize.define('tb_response', {
 	id: {
