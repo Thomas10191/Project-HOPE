@@ -1,0 +1,40 @@
+<h1>Criar Card</h1>
+<form action="/cards" method="post">
+    <div>
+        <label for="title">Titulo*:</label>
+        <input type="text" name="title" minlength="3" required />
+    </div>
+    <div>
+        <label for="type_user_id">type_user_id*:</label>
+        <input type="number" value="1" name="type_user_id" placeholder="1" required />
+    </div>
+    <div>
+        <label for="type_card_id">type_card_id*:</label>
+        <input type="number" value="1" name="type_card_id" placeholder="1" required />
+    </div>
+    <div>
+        <label for="image_url">imagem(link):</label>
+        <input type="url" name="image_url" placeholder="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" />
+    </div>
+    <div>
+        <label for="video_url">video(link):</label>
+        <input type="url" name="video_url" placeholder="https://www.youtube.com/watch?v=sQEgklEwhSo" />
+    </div>
+    <div>
+        <label for="link_url">link:</label>
+        <input type="url" name="link_url" placeholder="https://www.google.com/" />
+    </div>
+    <div>
+        <label for="headline">headline:</label>
+        <input type="text" name="headline" />
+    </div>
+    <div>
+        <label for="context">context:</label>
+        <input type="text" name="context" />
+    </div>
+    <div>
+        <label for="description">Descrição*:</label>
+        <textarea name="description" minlength="3" required></textarea>
+    </div>
+    <input type="submit" name="send">
+</form>

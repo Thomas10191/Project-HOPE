@@ -4,7 +4,7 @@ var express 	= require('express');
 var routePosts 		= require(__dirname+'/routes/cards');
 var routeUser 		= require(__dirname+'/routes/users');
 var routeAuth 		= require(__dirname+'/routes/auth');
-var routeIndex 		= require(__dirname+'/routes/index');
+//var routeIndex 		= require(__dirname+'/routes/index');
 var routeDoc		= require(__dirname+'/routes/doc');
 var routeTypeUser 	= require(__dirname+'/routes/type_user');
 var routeTypeCard 	= require(__dirname+'/routes/type_card');
@@ -24,11 +24,16 @@ app.use('/cards', routePosts);
 app.use('/users', routeUser);
 app.use('/auth', routeAuth);
 app.use('/doc',routeDoc);
-app.use('/',routeIndex);
+//app.use('/',routeIndex);
 app.use('/typeuser',routeTypeUser)
 app.use('/typecard',routeTypeCard)
 app.use('/response',routeResponse)
 app.use('/message',routeMessage)
+
+app.get("/", function(req,res){
+	res.sendFile(__dirname+"/card_register.html")
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   	next(createError(404));
